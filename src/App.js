@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AboutUs from "./components/Header/AboutUs/AboutUs";
+import Contact from "./components/Header/Contact/Contact";
+import EditProduct from "./components/Header/EditProduct/EditProduct";
+import Header from "./components/Header/Header";
+import Home from "./components/Header/Home/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
+  const API = "http://localhost:8000/products";
+
+  const [products, setProducts] = useState([]);
+
+  async function getProducts() {
+    let result = await axios.get(API);
+    setProducts(result.data);
+  }
+
+  function addProduct(newProduct) {
+    axios.post(API, newProduct);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home products={products} getProducts={getProducts} />}
+          />
+          <Route
+            path="/add"
+            element={<EditProduct addProduct={addProduct} />}
+          />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

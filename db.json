@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "name": "dfg",
+      "price": "fdg",
+      "amount": "sfdg",
+      "image": "",
+      "id": 1
+    },
+    {
+      "name": "",
+      "price": "",
+      "amount": "",
+      "image": "fdg",
+      "id": 2
+    },
+    {
+      "name": "fdsgfd",
+      "price": "fdsg",
+      "amount": "fdsg",
+      "image": "dfsg",
+      "id": 3
+    },
+    {
+      "name": "fdgfg",
+      "price": "fdgfdg",
+      "amount": "fdgfdg",
+      "image": "fdg",
+      "id": 4
+    }
+  ]
+}
